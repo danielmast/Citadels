@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        
+	    <TextView
+	        android:id="@+id/name" 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/player_name"
+	        android:textColor="@android:color/white" />
+	    
+	    <ImageView
+	        android:id="@+id/coin"
+	        android:layout_width="15dp"
+	        android:layout_height="15dp"
+	        android:src="@drawable/coin"
+	        android:contentDescription="@string/coin"
+	        android:layout_marginLeft="8dp"
+	        android:layout_marginTop="3dp"
+	        android:layout_toRightOf="@id/name" />
+	    
+	    <TextView
+	        android:id="@+id/gold" 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="4dp"
+	        android:layout_toRightOf="@id/coin"
+	        android:text="@string/player_gold"
+	        android:textColor="@android:color/white" />
+	    
+	    <ImageView
+	        android:id="@+id/district_back"
+	        android:layout_width="15dp"
+	        android:layout_height="15dp"
+	        android:scaleType="centerInside"
+	        android:src="@drawable/district_back"
+	        android:contentDescription="@string/district_back"
+	        android:layout_marginLeft="8dp"
+	        android:layout_marginTop="3dp"
+	        android:layout_toRightOf="@id/gold" />
+	    
+	    <TextView
+	        android:id="@+id/hand_size" 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="4dp"
+	        android:layout_toRightOf="@id/district_back"
+	        android:text="@string/player_hand_size"
+	        android:textColor="@android:color/white" />
+	    
+	    <ImageView
+	        android:id="@+id/king_counter"
+	        android:layout_width="15dp"
+	        android:layout_height="15dp"
+	        android:scaleType="centerInside"
+	        android:src="@drawable/king_counter"
+	        android:contentDescription="@string/king_counter"
+	        android:layout_marginLeft="8dp"
+	        android:layout_marginTop="2dp"
+	        android:layout_toRightOf="@id/hand_size" />
+	    
+	    <LinearLayout 
+	        android:id="@+id/char_and_districts"
+	        android:layout_width="wrap_content"
+	        android:layout_height="47dp"
+	        android:orientation="horizontal"
+	        android:layout_marginTop="3dp"
+		    android:layout_below="@id/name">
+	        
+	        <ImageView
+		        android:id="@+id/character"
+		        android:layout_width="30dp"
+		        android:layout_height="47dp"
+		        android:src="@drawable/character_back"
+		        android:contentDescription="@string/character" />
+		    
+	    </LinearLayout>
+</RelativeLayout>

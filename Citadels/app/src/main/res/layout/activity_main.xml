@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background" >
+    
+    <LinearLayout
+	    android:id="@+id/actions"
+	    android:layout_width="80dp"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    android:layout_alignParentRight="true"
+       	android:background="@color/actions_bg">
+       
+        <ImageView
+            android:id="@+id/grab_cards"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/grab_cards"
+            android:contentDescription="@string/grab_cards" />
+        
+        <ImageView
+            android:id="@+id/grab_2coins"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/grab_2coins"
+            android:contentDescription="@string/grab_2coins" />
+       
+        <ImageView
+            android:id="@+id/grab_color_coins"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/grab_color_coins"
+            android:contentDescription="@string/grab_color_coins" />
+        
+        <ImageView
+            android:id="@+id/build"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/build"
+            android:contentDescription="@string/build" />
+        
+        <ImageView
+            android:id="@+id/character_power"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/character_power"
+            android:contentDescription="@string/character_power" />
+        
+        <ImageView
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/done"
+            android:contentDescription="@string/done" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/view_toggle"
+        android:layout_width="60dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/detail_bg"
+        android:orientation="vertical">
+        
+        <ImageView
+            android:id="@+id/show_hand"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hand"
+            android:contentDescription="@string/hand_icon" />
+        
+        <ImageView
+            android:id="@+id/show_log"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/log"
+            android:contentDescription="@string/log_icon" />
+        
+    </LinearLayout>
+    
+    <RelativeLayout
+        android:id="@+id/detail"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/actions"
+        android:layout_toRightOf="@id/view_toggle"
+        android:background="@color/detail_bg"
+        android:gravity="center_vertical">
+        
+        <ScrollView
+	        android:id="@+id/log_scroll"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent">
+	        
+	        <TextView 
+	            android:id="@+id/log"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:padding="5dp"
+	            android:text="@string/log"
+	            android:textColor="@android:color/white" />
+	    </ScrollView>
+	    
+        <fragment android:name="com.dm.citadels.ChoosableCharactersFragment"
+            android:id="@+id/choosable_characters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        <fragment android:name="com.dm.citadels.HandFragment"
+            android:id="@+id/hand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/actions"
+        android:layout_above="@id/detail">
+        
+	    <LinearLayout
+	        android:id="@+id/player_container"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="20dp"
+	        android:paddingTop="20dp"
+	        android:paddingBottom="20dp"
+	        android:orientation="vertical">
+	        
+	        <LinearLayout
+	            android:id="@+id/removed_characters"
+	            android:layout_width="wrap_content"
+	            android:layout_height="47dp"
+	            android:orientation="horizontal">
+	            
+	            <ImageView
+			        android:id="@+id/faceDown"
+			        android:layout_width="30dp"
+			        android:layout_height="47dp"
+			        android:src="@drawable/character_back"
+			        android:contentDescription="@string/character" />
+	            
+	        </LinearLayout>
+	    </LinearLayout>
+    </ScrollView>
+    
+</RelativeLayout>

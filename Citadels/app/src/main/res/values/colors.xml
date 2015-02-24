@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="actions_text">#ffffff</color>
+	<color name="actions_bg">#45993300</color>
+	<color name="detail_bg">#45336699</color>
+	
+	<color name="player1_info_bg">#450000FF</color>
+	<color name="player2_info_bg">#00FF00</color>
+</resources>
