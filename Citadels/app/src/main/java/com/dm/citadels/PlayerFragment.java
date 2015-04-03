@@ -15,9 +15,9 @@ import android.widget.TextView;
 public class PlayerFragment extends Fragment {
 	private Player player;
 	
-    public PlayerFragment(Player player) {
-		this.player = player;
-	}
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

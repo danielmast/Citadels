@@ -22,7 +22,10 @@ public class HumanPlayer extends Player {
 	}
 	
 	public void doTurn() {
-		game.log("This is me, " + getName() + ", playing my round!");
+        game.log("This is me, " + getName() + ", playing my round!");
+
+        // Enable all actions, because player start playing
+        game.getMain().enableAllActions();
 		
 		// todo
 	}

@@ -59,7 +59,7 @@ public class HandFragment extends Fragment {
 		layoutParams.setMargins(leftMargin, 0, 0, 0);
 		image.setLayoutParams(layoutParams);
 		
-		// image.setOnClickListener(new HandDistrictOnClickListener(c, this, district));
+		image.setOnClickListener(new HandDistrictOnClickListener(c, this, district));
 		
 		return image;
 	}

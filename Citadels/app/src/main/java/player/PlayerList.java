@@ -40,7 +40,7 @@ public class PlayerList extends ArrayList<Player> {
 	public void setCrownPlayer(Player crownPlayer) {
 		this.crownPlayer = crownPlayer;
 	}
-	
+
 	public void setStep(Step step) {
 		this.step = step;
 	}

@@ -1,5 +1,13 @@
 package com.dm.citadels;
 
+import action.Build;
+import action.CharacterPower;
+import action.Done;
+import action.Grab2Coins;
+import action.GrabCards;
+import action.GrabColorCoins;
+import action.Hand;
+import action.Log;
 import game.Game;
 
 import java.util.ArrayList;
@@ -27,6 +35,17 @@ public class MainActivity extends Activity {
 	private static final int HAND = 0;
 	private static final int LOG = 1;
 	private static final int CHOOSABLE_CHARACTERS = 2;
+
+    // Actions
+    public GrabCards grabCards;
+    public Grab2Coins grab2Coins;
+    public GrabColorCoins grabColorCoins;
+    public Build build;
+    public CharacterPower characterPower;
+    public Done done;
+    public Hand handAction;
+    public Log logAction;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +58,7 @@ public class MainActivity extends Activity {
 		choosable_characters = (ChoosableCharactersFragment) getFragmentManager().findFragmentById(R.id.choosable_characters);
 		hand = (HandFragment) getFragmentManager().findFragmentById(R.id.hand);
 		
-		setActionListeners();
+		setActions();
 		
 		int playerCount = 4;
 		game = new Game(playerCount, this);
@@ -58,39 +77,35 @@ public class MainActivity extends Activity {
 		return game;
 	}
 	
-	private void setActionListeners() {
-		ImageView grab_cards = (ImageView) findViewById(R.id.grab_cards);
-		grab_cards.setOnClickListener(new ActionOnClickListener(this, 0));
-		
-		ImageView grab_2coins = (ImageView) findViewById(R.id.grab_2coins);
-		grab_2coins.setOnClickListener(new ActionOnClickListener(this, 1));
-		
-		ImageView grab_color_coins = (ImageView) findViewById(R.id.grab_color_coins);
-		grab_color_coins.setOnClickListener(new ActionOnClickListener(this, 2));
-		
-		ImageView build = (ImageView) findViewById(R.id.build);
-		build.setOnClickListener(new ActionOnClickListener(this, 3));
-		
-		ImageView character_power = (ImageView) findViewById(R.id.character_power);
-		character_power.setOnClickListener(new ActionOnClickListener(this, 4));
-		
-		ImageView done = (ImageView) findViewById(R.id.done);
-		done.setOnClickListener(new ActionOnClickListener(this, 5));
-		
-		ImageView show_hand = (ImageView) findViewById(R.id.show_hand);
-		show_hand.setOnClickListener(new ActionOnClickListener(this, hand, 6));
-		
-		ImageView show_log = (ImageView) findViewById(R.id.show_log);
-		show_log.setOnClickListener(new ActionOnClickListener(this, 7));
+	private void setActions() {
+        grabCards = new GrabCards(this);
+        grab2Coins = new Grab2Coins(this);
+        grabColorCoins = new GrabColorCoins(this);
+        build = new Build(this);
+        characterPower = new CharacterPower(this);
+        done = new Done(this);
+        handAction = new Hand(this);
+        logAction = new Log(this);
 	}
-	
+
+    public void enableAllActions() {
+        grabCards.enable();        grab2Coins.enable();   grabColorCoins.enable();   build.enable();
+        characterPower.enable();   done.enable();         handAction.enable();       logAction.enable();
+    }
+
+    public void disableAllActions() {
+        grabCards.disable();        grab2Coins.disable();   grabColorCoins.disable();   build.disable();
+        characterPower.disable();   done.disable();         handAction.disable();       logAction.disable();
+    }
+
 	// Creates a fragment for each player and adds it to the layout
 	private void createFragments() {
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		
+
 		for (Player player : game.getPlayers()) {
-			PlayerFragment playerFragment = new PlayerFragment(player);
+			PlayerFragment playerFragment = new PlayerFragment();
+            playerFragment.setPlayer(player);
 			fragmentTransaction.add(R.id.player_container, playerFragment, player.getName());
 		}
 		
@@ -165,6 +180,8 @@ public class MainActivity extends Activity {
 		log_scroll.setVisibility(View.GONE);
 		ArrayList<Character> choosables = game.getCharacterDeck().getChoosable();
 		choosable_characters.show(choosables);
+
+        disableAllActions(); handAction.enable(); logAction.enable();
 	}
 	
 	// Appends a line to the log window on the screen

@@ -89,21 +89,17 @@ public class ComputerPlayer extends Player {
 		boolean noneAffordable = false;
 		int lastIndex = (index + hand.size() - 1) % hand.size();
 		
-		boolean canAfford = (gold >= district.getCost());
-		
 		// Search for a district that is affordable. Stop when nothing seems affordable and all districts in the hand have been checked
-		while (!canAfford && !noneAffordable) {
+		while (!canBuild(district) && !noneAffordable) {
 			index = (index + 1) % hand.size();
 			district = hand.get(index);
-			
-			canAfford = (gold >= district.getCost());
 			
 			if (index == lastIndex) {
 				noneAffordable = true;
 			}
 		}
 		
-		if (canAfford) {
+		if (canBuild(district)) {
 			build(district);
 		}
 	}

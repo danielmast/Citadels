@@ -58,7 +58,7 @@ public class Round {
 		Player turnPlayer = game.getPlayers().getTurnPlayer();
 		if (turnPlayer == null) { // All players have chosen a character
 			game.getPlayers().startPlayerTurns();
-			playerTurnsWithoutNext();
+            playerTurnsWithoutNext();
 		} else {
 			turnPlayer.chooseCharacter();
 		}

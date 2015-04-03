@@ -17,6 +17,13 @@ public abstract class Player {
 	protected Character character;
 	protected boolean played;
 	protected Game game;
+
+    // To keep track of what the player did during his round
+    public boolean didGrabCard;
+    public boolean didTakeTwoGold;
+    public boolean didTakeColorGold;
+    public boolean didBuild;
+    public boolean didCharacterPower;
 	
 	public Player(String name, Game game) {
 		this.name = name;
@@ -106,6 +113,14 @@ public abstract class Player {
 		}
 		return value;
 	}
+
+    public void resetDid() {
+        didGrabCard = false;
+        didTakeTwoGold = false;
+        didTakeColorGold = false;
+        didBuild = false;
+        didCharacterPower = false;
+    }
 	
 	public boolean isKing() {
 		return this.equals(game.getPlayers().getCrownPlayer());
@@ -122,9 +137,14 @@ public abstract class Player {
 				game.getPlayers().setFinishedFirst(this);
 			}
 		}
-		
-		game.log("Built a " + district.getName() + "(" + district.getCost() +  "). " + gold + " Gold left");
+
+        game.log("Built a " + district.getName() + "(" + district.getCost() +  "). " + gold + " Gold left");
 	}
+
+    // Returns whether the player has sufficient funds to build the given district
+    public boolean canBuild(District district) {
+        return gold >= district.getCost();
+    }
 	
 	protected void takeOneGold() {
 		gold++;
@@ -132,7 +152,7 @@ public abstract class Player {
 	
 	public void takeTwoGold() {
 		gold += 2;
-		game.log("Taking 2 gold");
+        game.log("Taking 2 gold");
 	}
 	
 	public void takeColorGold() {
@@ -143,8 +163,8 @@ public abstract class Player {
 				}
 			}
 		}
-		
-		game.log("Taking gold for colored districts");
+
+        game.log("Taking gold for colored districts");
 	}
 	
 	public int getScore() {
